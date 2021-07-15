@@ -207,6 +207,7 @@ class JavascriptChannel {
 /// the `WebView` is not able to block the `WebView` from receiving touch events.
 /// See https://github.com/flutter/flutter/issues/53490.
 class WebView extends StatefulWidget {
+
   /// Creates a new web view.
   ///
   /// The web view can be controlled using a `WebViewController` that is passed to the
