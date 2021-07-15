@@ -4,7 +4,7 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 
     dependencies {
@@ -15,7 +15,7 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        mavenCentral()
+        jcenter()
     }
 }
 
@@ -25,10 +25,9 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 16
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -36,6 +35,5 @@ android {
     dependencies {
         implementation 'androidx.annotation:annotation:1.0.0'
         implementation 'androidx.webkit:webkit:1.0.0'
-        testImplementation 'junit:junit:4.12'
     }
 }
