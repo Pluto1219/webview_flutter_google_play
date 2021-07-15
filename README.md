@@ -19,14 +19,26 @@ The WebView is relying on
 [Platform Views](https://flutter.dev/docs/development/platform-integration/platform-views) to embed
 the Android’s webview within the Flutter app. By default a Virtual Display based platform view
 backend is used, this implementation has multiple
-[keyboard](https://github.com/flutter/flutter/issues?q=is%3Aopen+label%3Avd-only+label%3A%22p%3A+webview-keyboard%22).
+[keyboard issues](https://github.com/flutter/flutter/issues?q=is%3Aopen+label%3Avd-only+label%3A%22p%3A+webview-keyboard%22).
 When keyboard input is required we recommend using the Hybrid Composition based platform views
 implementation. Note that on Android versions prior to Android 10 Hybrid Composition has some
 [performance drawbacks](https://flutter.dev/docs/development/platform-integration/platform-views#performance).
 
 ### Using Hybrid Composition
 
-To enable hybrid composition, set `WebView.platform = SurfaceAndroidWebView();` in `initState()`.
+1. Set the `minSdkVersion` in `android/app/build.gradle`:
+
+```groovy
+android {
+    defaultConfig {
+        minSdkVersion 19
+    }
+}
+```
+
+This means that app will only be available for users that run Android SDK 19 or higher.
+
+2. To enable hybrid composition, set `WebView.platform = SurfaceAndroidWebView();` in `initState()`.
 For example:
 
 ```dart
@@ -53,17 +65,6 @@ class WebViewExampleState extends State<WebViewExample> {
       initialUrl: 'https://flutter.dev',
     );
   }
-}
-```
-
-`SurfaceAndroidWebView()` requires [API level 19](https://developer.android.com/studio/releases/platforms?hl=th#4.4). The plugin itself doesn't enforce the API level, so if you want to make the app available on devices running this API level or above, add the following to `<your-app>/android/app/build.gradle`:
-
-```gradle
-android {
-    defaultConfig {
-        // Required by the Flutter WebView plugin.
-        minSdkVersion 19
-    }
 }
 ```
 
